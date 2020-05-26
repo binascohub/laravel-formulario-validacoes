@@ -1,5 +1,7 @@
 {{ csrf_field() }}
 
+<input type="hidden" name="client_type" value="{{$clientType}}" />
+
 <div class="form-group">
     <label for="name">Nome</label>
     <input class="form-control" id="name" name="name"
@@ -24,44 +26,55 @@
         value="{{old('phone',$client->phone)}}" />
 </div>
 
-@php
-    $marital_status = old('marital_status',$client->marital_status);
-@endphp
-<div class="form-group">
-    <label for="marital_status">Estado Civil</label>
-    <select class="form-control" id="marital_status" name="marital_status">
-        <option value="">Selecione</option>
-        <option value="1" @if($marital_status=='1') selected @endif>Solteiro</option>
-        <option value="2" @if($marital_status=='2') selected @endif>Casado</option>
-        <option value="3" @if($marital_status=='3') selected @endif>Divorciado</option>
-    </select>
-</div>
+@if($clientType == \App\Client::TYPE_INDIVIDUAL)
+    @php
+        $marital_status = old('marital_status',$client->marital_status);
+    @endphp
+    <div class="form-group">
+        <label for="marital_status">Estado Civil</label>
+        <select class="form-control" id="marital_status" name="marital_status">
+            <option value="">Selecione</option>
+            <option value="1" @if($marital_status=='1') selected @endif>Solteiro</option>
+            <option value="2" @if($marital_status=='2') selected @endif>Casado</option>
+            <option value="3" @if($marital_status=='3') selected @endif>Divorciado</option>
+        </select>
+    </div>
 
-<div class="form-group">
-    <label for="date_birth">Data Nascimento</label>
-    <input class="form-control" id="date_birth" name="date_birth" type="date"
-        value="{{old('date_birth',$client->date_birth)}}" />
-</div>
+    <div class="form-group">
+        <label for="date_birth">Data Nascimento</label>
+        <input class="form-control" id="date_birth" name="date_birth" type="date"
+            value="{{old('date_birth',$client->date_birth)}}" />
+    </div>
 
-<div class="radio">
-    <label>
-        <input type="radio" name="sex" value="m"
-            @if(old('sex',$client->sex)=='m') checked @endif /> Masculino
-    </label>
-</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="sex" value="m"
+                @if(old('sex',$client->sex)=='m') checked @endif /> Masculino
+        </label>
+    </div>
 
-<div class="radio">
-    <label>
-        <input type="radio" name="sex" value="f"
-            @if(old('sex',$client->sex)=='f') checked @endif /> Feminino
-    </label>
-</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="sex" value="f"
+                @if(old('sex',$client->sex)=='f') checked @endif /> Feminino
+        </label>
+    </div>
 
-<div class="form-group">
-    <label for="physical_disability">Deficiência Física</label>
-    <input class="form-control" id="physical-disability" name="physical_disability"
-        value="{{old('physical_disability',$client->physical_disability)}}" />
-</div>
+    <div class="form-group">
+        <label for="physical_disability">Deficiência Física</label>
+        <input class="form-control" id="physical-disability" name="physical_disability"
+            value="{{old('physical_disability',$client->physical_disability)}}" />
+    </div>
+
+@else
+
+    <div class="form-group">
+      <label for="company_name">Nome Fantasia</label>
+      <input name="company_name" id="company_name" class="form-control"  aria-describedby="helpId">
+      <small id="helpId" class="text-muted">Não é a Razão Social</small>
+    </div>
+
+@endif
 
 <div class="checkbox">
     <label>
@@ -69,4 +82,5 @@
             @if($client->defaulter) checked @endif /> Inadimplente?
     </label>
 </div>
+
 <button type="submit" class="btn btn-primary">Salvar</button>
