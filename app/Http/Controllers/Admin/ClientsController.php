@@ -61,6 +61,8 @@ class ClientsController extends Controller
         // modelo de mass assignment
         $data['defaulter'] = $request->has('defaulter');
         $data['client_type'] = Client::getClientType($request->get('client_type'));
+
+
         Client::create($data);
 
         return redirect()->route('clients.index');
@@ -133,10 +135,13 @@ class ClientsController extends Controller
     protected function _validate($request)
     {
 
+
+
         $clientType = Client::getClientType($request->get('client_type'));
         $documentNumberType = $clientType == Client::TYPE_INDIVIDUAL ? 'cpf' : 'cnpj';
         $client = $request->route('client');
-        $clientId = $client instanceof Client ? $client->id : null;
+        $clientId = $client instanceof Client ? $client->id : 0;
+
 
         $rules = [
             'name' => 'required|max:255',
