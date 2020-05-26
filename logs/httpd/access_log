@@ -1,0 +1,5 @@
+192.168.0.175 - - [26/May/2020:08:59:19 -0300] "GET / HTTP/1.1" 500 521212 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+192.168.0.175 - - [26/May/2020:08:59:20 -0300] "GET /favicon.ico HTTP/1.1" 200 - "http://192.168.0.175/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+192.168.0.175 - - [26/May/2020:09:01:12 -0300] "GET / HTTP/1.1" 200 2426 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+192.168.0.175 - - [26/May/2020:09:01:12 -0300] "GET /favicon.ico HTTP/1.1" 200 - "http://192.168.0.175/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+192.168.0.175 - - [26/May/2020:09:02:03 -0300] "-" 408 - "-" "-"
