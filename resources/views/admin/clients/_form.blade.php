@@ -7,12 +7,12 @@
 
 @component('form._form_group',['field'=>'document_number'])
     {{ Form::label('document_number','Documento') }}
-    {{ Form::email('document_number',null,['class'=>'form-control']) }}
+    {{ Form::text('document_number',null,['class'=>'form-control']) }}
 @endcomponent
 
 @component('form._form_group',['field'=>'email'])
     {{ Form::label('email','E-mail') }}
-    {{ Form::text('email',null,['class'=>'form-control']) }}
+    {{ Form::email('email',null,['class'=>'form-control']) }}
 @endcomponent
 
 @component('form._form_group',['field'=>'phone'])
