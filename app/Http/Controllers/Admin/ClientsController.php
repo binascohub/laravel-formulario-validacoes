@@ -16,7 +16,9 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = \App\Client::all();
+
+
+        $clients = \App\Client::paginate(3);
 
         return view(
             'admin.clients.index',
