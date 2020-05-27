@@ -54,17 +54,14 @@ class ClientsController extends Controller
         // validações
         $data = $request->only($request->rules());
 
-        // Adicionando um a um
-        # $client = new Client();
-        # $client->name = $request->get('name');
-        # $client->save();
-
         // modelo de mass assignment
         $data['defaulter'] = $request->has('defaulter');
         $data['client_type'] = Client::getClientType($request->get('client_type'));
 
-
         Client::create($data);
+
+        // flash message
+        \Session::flash('message','Cliente cadastrado com sucesso.');
 
         return redirect()->route('clients.index');
     }
@@ -114,6 +111,9 @@ class ClientsController extends Controller
 
         $client->fill($data);
         $client->save();
+
+        // flash message
+        \Session::flash('message','Cliente alterado com sucesso.');
 
         return redirect()->route('clients.index');
     }
