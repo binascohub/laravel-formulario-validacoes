@@ -15,11 +15,9 @@
 
 @include('form._errors')
 
-<form method="post" action="{{ route('clients.store') }}">
-
-    {{ csrf_field() }}
+{{ Form::open(['route' => 'clients.store']) }}
 
     @include('admin.clients._form')
 
-</form>
+{{ Form::close() }}
 @endsection

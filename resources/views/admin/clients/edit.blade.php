@@ -6,11 +6,15 @@
 
 @include('form._errors')
 
-<form method="post" action="{{ route('clients.update', ['client' => $client->id]) }}">
-
-    {{ method_field('PUT') }}
+{{ Form::model(
+    $client,
+    [
+        'route' => ['clients.update', $client->id],
+        'method' => 'PUT'
+    ]
+) }}
 
     @include('admin.clients._form')
 
-</form>
+{{ Form::close() }}
 @endsection
