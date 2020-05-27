@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="{{asset('css/bootstrap/bootstrap.css')}}" />
     </head>
     <body>
         <div class="row">
@@ -9,6 +9,6 @@
                 @yield('content')
             </div>
         </div>
-        <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap/bootstrap.js')}}"></script>
     </body>
 </html>
