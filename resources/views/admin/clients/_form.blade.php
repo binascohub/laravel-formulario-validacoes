@@ -1,29 +1,27 @@
-{{ csrf_field() }}
+{{ Form::hidden('client_type', $clientType) }}
 
-<input type="hidden" name="client_type" value="{{$clientType}}" />
-
-<div class="form-group">
-    {{ Form::label('name','Nome') }}
+@component('form._form_group',['field'=>'name'])
+    {{ Form::label('name','Nome',['class'=>'control-label']) }}
     {{ Form::text('name',null,['class'=>'form-control']) }}
-</div>
+@endcomponent
 
-<div class="form-group">
+@component('form._form_group',['field'=>'document_number'])
     {{ Form::label('document_number','Documento') }}
     {{ Form::email('document_number',null,['class'=>'form-control']) }}
-</div>
+@endcomponent
 
-<div class="form-group">
+@component('form._form_group',['field'=>'email'])
     {{ Form::label('email','E-mail') }}
     {{ Form::text('email',null,['class'=>'form-control']) }}
-</div>
+@endcomponent
 
-<div class="form-group">
+@component('form._form_group',['field'=>'phone'])
     {{ Form::label('phone','Telefone') }}
     {{ Form::text('phone',null,['class'=>'form-control']) }}
-</div>
+@endcomponent
 
 @if($clientType == \App\Client::TYPE_INDIVIDUAL)
-    <div class="form-group">
+    @component('form._form_group',['field'=>'marital_status'])
         {{ Form::label('marital_status','Estado Civil') }}
         {{ Form::select(
             'marital_status',
@@ -36,37 +34,38 @@
             null,
             ['class'=>'form-control']
         ) }}
-    </div>
+    @endcomponent
 
-    <div class="form-group">
+    @component('form._form_group',['field'=>'date_birth'])
         {{ Form::label('date_birth','Data de Nascimento') }}
         {{ Form::date('date_birth',null,['class'=>'form-control']) }}
-    </div>
+    @endcomponent
 
-    <div class="radio">
+    <div class="radio {{$errors->has('sex')?'has-error':''}}">
         <label>
             {{ Form::radio('sex','m') }} Masculino
         </label>
     </div>
-
-    <div class="radio">
+    <div class="radio {{$errors->has('sex')?' has-error':''}}">
         <label>
             {{ Form::radio('sex','f') }} Feminino
         </label>
     </div>
+    <div class="{{$errors->has('sex')?' has-error':''}}">
+        @include('form._help_block',['field' => 'sex'])
+    </div>
 
-    <div class="form-group">
+    @component('form._form_group',['field'=>'physical_disability'])
         {{ Form::label('physical_disability','Deficiência Física') }}
         {{ Form::text('physical_disability',null,['class'=>'form-control']) }}
-    </div>
+    @endcomponent
 
 @else
 
-    <div class="form-group">
+    @component('form._form_group',['field'=>'companyy_name'])
         {{ Form::label('company_name','Nome Fantasia') }}
         {{ Form::text('company_name',null,['class'=>'form-control']) }}
-        <small id="helpId" class="text-muted">Não é a Razão Social</small>
-    </div>
+    @endcomponent
 
 @endif
 
